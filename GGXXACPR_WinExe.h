@@ -16,7 +16,7 @@ struct COLLISION {
   unsigned int attr;
 };
 
-struct DAMAGEPARAM  //unfinished
+struct DAMAGEPARAM { //unfinished
   unsigned short DownX;
   unsigned short DownY;
   unsigned short DownGravity;
