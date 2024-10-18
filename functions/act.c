@@ -1,20 +1,22 @@
 #include <GGXXACPR_WinExe.h> // <= this is still outdated as of Oct 18 2024
 
-void __fastcall SetExCollision(CHARACTER_WORK *offset, short x, short y, ushort w, ushort h, uint attr); // In gcl.c
-void __fastcall ZTED_Time_Dec(CHARACTER_WORK *offset, int val); // In zte_act.c
 void __fastcall DirectionDirectChange(CHARACTER_WORK *offset); // In actsub.c
-void __fastcall SetPriorityMain(CHARACTER_WORK *offset, int PriAdd, int flag); // In actsub.c
+void __fastcall SetExCollision(CHARACTER_WORK *offset, short x, short y, ushort w, ushort h, uint attr); // In gcl.c
 void __fastcall SetLandBreakActno(CHARACTER_WORK *offset, uint no); // In actsub2.c
-int __fastcall Random(int seed); // In random.c
+void __fastcall SetPriorityMain(CHARACTER_WORK *offset, int PriAdd, int flag); // In actsub.c
+void __fastcall ZTED_Time_Dec(CHARACTER_WORK *offset, int val); // In zte_act.c
 int __fastcall CmnGuardAct(CHARACTER_WORK *offset, TACTHEADER* header, int cnt); // In p1colchk.c
+int __fastcall Random(int seed); // In random.c
 int dptoli(double arg_a); // Unk, Converts Double-Precision Floats into Signed Integers
 
+extern GAME_INFORMATION g_info;
+extern GROUND_SHAKE groundshakey;
 extern CHARACTER_WORK *PlayerWork;
 extern int PLAYER_HITPOINTMAX;
-extern GROUND_SHAKE groundshakey;
 extern int RandomSeed;
 extern int RandomSeed2;
-extern int DAT_00ad0538; // Unk global
+
+extern CHARACTER_WORK *PTR_00ad27a8 // Unk global
 extern int INT_00ad0538; // Unk global
 
 void __cdecl af_ASTFLAGCONTROL(CHARACTER_WORK *offset,TACTNORMAL *ip)
@@ -311,8 +313,8 @@ void __cdecl af_ENEMY_HIT_SE_MODE(CHARACTER_WORK *offset,TACTNORMAL *ip)
     {
       iVar2 = 1;
     }
-    *(uchar *)((int)&dParams->HitSE + iVar2) = ip->arg1;
-    *(undefined *)((int)&offset->HitParam->HitSE + iVar2 + 2) = *(undefined *)&ip->arg2;
+    dParams->HitSE.param.no[iVar2]) = ip->arg1;
+    dParams->HitSE.param.flag[iVar2]) = *(uchar *)ip->arg2;
   }
   return;
 }
@@ -330,8 +332,8 @@ void __cdecl af_ENEMY_GUARD_SE_MODE(CHARACTER_WORK *offset,TACTNORMAL *ip)
     {
       iVar2 = 1;
     }
-    *(uchar *)((int)&dParams->GuardSE + iVar2) = ip->arg1;
-    *(undefined *)((int)&offset->HitParam->GuardSE + iVar2 + 2) = *(undefined *)&ip->arg2;
+    dParams->HitSE.param.no[iVar2]) = ip->arg1;
+    dParams->HitSE.param.flag[iVar2]) = *(uchar *)ip->arg2;
   }
   return;
 }
@@ -353,6 +355,157 @@ void __cdecl af_DAMAGE_VOICE(CHARACTER_WORK *offset,TACT3B *ip)
     offset->HitParam->dno = ip->arg1;
     offset->HitParam->dprob = ip->arg3;
   }
+  return;
+}
+
+void __cdecl af_DOWN_GRAV(CHARACTER_WORK *offset,TACTNORMAL *ip)
+{
+  DAMAGEPARAM *pDVar1;
+  
+  pDVar1 = offset->HitParam;
+  if (pDVar1 != (DAMAGEPARAM *)0x0)
+  {
+    if (ip->arg1 == '\0')
+    {
+      pDVar1->DownGrav = ip->arg2;
+      return;
+    }
+    pDVar1[1].DownGrav = ip->arg2;
+  }
+  return;
+}
+
+void __cdecl af_DOWN_X(CHARACTER_WORK *offset,TACTNORMAL *ip)
+{
+  DAMAGEPARAM *pDVar1;
+  
+  pDVar1 = offset->HitParam;
+  if (pDVar1 != (DAMAGEPARAM *)0x0)
+  {
+    if (ip->arg1 == '\0')
+    {
+      pDVar1->DownX = ip->arg2;
+      return;
+    }
+    pDVar1[1].DownX = ip->arg2;
+  }
+  return;
+}
+
+void __cdecl af_DOWN_Y(CHARACTER_WORK *offset,TACTNORMAL *ip)
+{
+  DAMAGEPARAM *pDVar1;
+  
+  pDVar1 = offset->HitParam;
+  if (pDVar1 != (DAMAGEPARAM *)0x0)
+  {
+    if (ip->arg1 == '\0')
+    {
+      pDVar1->DownY = ip->arg2;
+      return;
+    }
+    pDVar1[1].DownY = ip->arg2;
+  }
+  return;
+}
+
+void __cdecl af_DELETE_ITTAI(CHARACTER_WORK *offset,TACTNORMAL *ip)
+{
+  DeleteIttai(offset);
+  return;
+}
+
+void __cdecl af_FADE(CHARACTER_WORK *offset,TACTNORMAL *ip)
+{
+  uchar uVar1;
+  ushort uVar2;
+  CHARACTER_WORK *pCVar3;
+  uchar bVar4;
+  uchar bVar5;
+  
+  uVar1 = ip->arg1;
+  if (uVar1 == '\x03')
+  {
+    if (ip->arg2 != 0)
+    {
+      bVar4 = offset->padid == '\0';
+      offset->SpriteFlag = offset->SpriteFlag | 0x40000;
+      PlayerWork[bVar4].SpriteFlag = PlayerWork[bVar4].SpriteFlag | 0x40000;
+      offset->FadeVal = '\0';
+      PlayerWork[bVar4].FadeVal = '\0';
+      return;
+    }
+    offset->SpriteFlag = offset->SpriteFlag & 0xfffbffff;
+    PlayerWork[offset->padid == '\0'].SpriteFlag = PlayerWork[offset->padid == '\0'].SpriteFlag & 0xfffbffff;
+    return;
+  }
+  if (uVar1 == '\x04')
+  {
+    uVar2 = ip->arg2;
+  }
+  else
+  {
+    if (uVar1 == '\x05')
+    {
+      bVar5 = offset->padid;
+    }
+    else
+    {
+      if (uVar1 != '\x06')
+      {
+        if (uVar1 == '\a')
+        {
+          if (ip->arg2 != 0)
+          {
+            g_info.BattleControlFlag |= 2;
+            return;
+          }
+          if ((g_info.BattleControlFlag & 0x10000) == 0)
+          {
+            g_info.BattleControlFlag &= 0xfffffffd;
+            return;
+          }
+        }
+        else
+        {
+          if (uVar1 == '\x02')
+          {
+            if (ip->arg2 != 0)
+            {
+              g_info.BattleControlFlag |= 8;
+              return;
+            }
+            g_info.BattleControlFlag &= 0xfffffff7;
+            return;
+          }
+          if (uVar1 == '\x01')
+          {
+            FadeEndCommand = 0;
+            FadeSpeed = (float)(uint)ip->arg2;
+            Rq_Fadeout();
+            FadeCockpitFlag = 1;
+            return;
+          }
+          FadeEndCommand = 0;
+          FadeSpeed = (float)(uint)ip->arg2;
+          Rq_Fadein();
+          FadeCockpitFlag = 1;
+        }
+        return;
+      }
+      bVar5 = offset->padid == '\0';
+    }
+    offset = PlayerWork + bVar5;
+    uVar2 = ip->arg2;
+  }
+  if (0xfe < uVar2)
+  {
+    offset->SpriteFlag = offset->SpriteFlag & 0xfffbffff;
+    offset->FadeVal = *(char *)&ip->arg2;
+    return;
+  }
+  offset->SpriteFlag = offset->SpriteFlag | 0x40000;
+  offset->FadeVal = *(char *)&ip->arg2;
   return;
 }
 
@@ -427,6 +580,23 @@ void __cdecl af_SET_ACTTYPE(CHARACTER_WORK *offset,TSET_ACTTYPE *ip)
     return;
   }
   (offset->ActHeader).flag = ip->type;
+  return;
+}
+
+void __cdecl af_SET_DOWNTIME(CHARACTER_WORK *offset,TACTNORMAL *ip)
+{
+  DAMAGEPARAM *pDVar1;
+  
+  pDVar1 = offset->HitParam;
+  if (pDVar1 != (DAMAGEPARAM *)0x0)
+  {
+    if (ip->arg1 == '\0')
+    {
+      pDVar1->DownUkemiTime = ip->arg2;
+      return;
+    }
+    pDVar1[1].DownUkemiTime = ip->arg2;
+  }
   return;
 }
 
@@ -768,6 +938,27 @@ void __cdecl af_UseParentHeader(CHARACTER_WORK *offset,TACTNORMAL *ip)
     (offset->ActHeader).damage = (pvVar2->ActHeader).damage;
     (offset->ActHeader).flag2 = (pvVar2->ActHeader).flag2;
     offset->HitParam = pvVar2->HitParam;
+  }
+  return;
+}
+
+void __fastcall DeleteIttai(CHARACTER_WORK *offset)
+{
+  CHARACTER_WORK **ppCVar1;
+  CHARACTER_WORK *pCVar2;
+  
+  pCVar2 = ObjectWork;
+  if (ObjectWork != (CHARACTER_WORK *)&PTR_00ad27a8)
+  {
+    do
+    {
+      if ((pCVar2->parentFlag != 0) && (offset == pCVar2->parentWork))
+      {
+        pCVar2->actst = pCVar2->actst | 0xa0000000;
+      }
+      ppCVar1 = &pCVar2->next;
+      pCVar2 = *ppCVar1;
+    } while (*ppCVar1 != (CHARACTER_WORK *)&PTR_00ad27a8);
   }
   return;
 }
