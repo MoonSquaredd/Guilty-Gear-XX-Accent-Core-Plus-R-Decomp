@@ -1,4 +1,4 @@
-#include <GGXXACPR_WinExe.h>
+#include <GGXXACPR_WinExe.h> // <= this is still outdated as of Oct 18 2024
 
 void __fastcall SetExCollision(CHARACTER_WORK *offset, short x, short y, ushort w, ushort h, uint attr); // In gcl.c
 void __fastcall ZTED_Time_Dec(CHARACTER_WORK *offset, int val); // In zte_act.c
