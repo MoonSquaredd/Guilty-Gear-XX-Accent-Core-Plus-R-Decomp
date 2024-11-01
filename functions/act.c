@@ -1,4 +1,5 @@
 #include <GGXXACPR_WinExe.h> // <= this is still outdated as of Oct 18 2024
+#include <stddef.h>
 
 void __fastcall DirectionDirectChange(CHARACTER_WORK *offset); // In actsub.c
 void __fastcall SetExCollision(CHARACTER_WORK *offset, short x, short y, ushort w, ushort h, uint attr); // In gcl.c
@@ -18,6 +19,8 @@ extern int RandomSeed2;
 
 extern CHARACTER_WORK *PTR_00ad27a8 // Unk global
 extern int INT_00ad0538; // Unk global
+
+ACT_FUNC_SIZE Act_Func_Size_Tb[105]; // i'll be filling this later
 
 void __cdecl af_ASTFLAGCONTROL(CHARACTER_WORK *offset,TACTNORMAL *ip)
 {
@@ -1027,6 +1030,116 @@ void __fastcall Parent_BACK_MOTION(CHARACTER_WORK *offset)
   if (offset->idno == 0xd)
   {
     offset->ply->PersonalWork[0].w[1] = 0;
+  }
+  return;
+}
+
+void __fastcall NextInstExecute(CHARACTER_WORK *offset)
+{
+  CHARACTER_WORK *offset2;
+  TACTNORMAL *ip;
+  TACTNORMAL *CurrentInst;
+  TACTNORMAL *CellBegin;
+  int instSize;
+  TACTNORMAL *inst;
+
+  ip = offset->InstAddr;
+  if (ip->id != 0xFF)
+  {
+    do
+    {
+      CurrentInst = ip;
+      CellBegin = GetCellBeginAddr(offset, ip);
+      ip = CellBegin;
+    } while (CurrentInst != CellBegin);
+    
+    if ((ip->id != 0) && (ip->id != 0x61))
+    {
+      do
+      {
+        // it is that stupid
+      } while (true);
+    }
+    SetAnimeData(offset, ip);
+    instSize = GetInstSize(ip->id);
+    inst = ip + (instSize >> 2);
+    instId = inst->id;
+    while (instId != 0)
+    {
+      if (instId != 0xFF)
+      {
+        if (instId != 0x61)
+        {
+          if (Act_Func_Size_Tb[instId].func != NULL)
+          {
+            Act_Func_Size_Tb[instId].func(offset, inst);
+            instSize = Act_Func_Size_Tb[instId].size;
+            if (instId == 0xFF)
+            {
+              instSize = 4;
+            }
+            inst = inst + (instSize >> 2);
+          }
+          else
+          {
+            if (instId != 0x19)
+            {
+              if (instId != 0x27)
+              {
+                if (instId == 0x60)
+                {
+                  ?? = GetCellBeginAddr(offset, inst); // figuring out
+                }
+              }
+              else
+              {
+                ?? = GetCellBeginAddr(offset, inst); // figuring out
+              }
+            }
+            else
+            {
+              // figuring out
+            }
+          }
+        }
+      }
+      instId = inst->id;
+    }
+    if (inst->id == 0xFF)
+    {
+      offset->InstSt |= 1;
+      if (inst->arg1 == 3)
+      {
+        offset->InstSt |= 0x10;
+        return;
+      }
+      if (inst->arg1 == 4)
+      {
+        offset->InstSt |= 0x200;
+        offset->InstVal = inst->arg2;
+        return;
+      }
+      if (inst->arg1 == 5)
+      {
+        offset->InstSt |= 0x2000;
+        return;
+      }
+      if (inst->arg1 == 6)
+      {
+        offset->InstSt |= 0x400;
+        return;
+      }
+      if (inst->arg1 == 8)
+      {
+        offset->InstSt |= 0x800;
+        return;
+      }
+      if (inst->arg1 == 7)
+      {
+        offset->InstSt |= 0x1000;
+        return;
+      }
+    }
   }
   return;
 }
