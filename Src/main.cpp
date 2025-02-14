@@ -14,8 +14,6 @@ bool vjoyfix = true;
 bool disablecrashdumps = false;
 
 int main(int argc, char* argv[], HINSTANCE hInstance) {
-  int argi = 0;
-  
   if (SteamAPI_RestartAppIfNecessary(348550)) {
     return -1;
   }
