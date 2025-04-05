@@ -1,4 +1,4 @@
-//this is NOT finished kthxbye
+//this is NOT finished
 
 #include <steam_api.h>
 #include <string.h>
@@ -59,7 +59,7 @@ LRESULT WndProc(HWND hwnd, uint uMsg, WPARAM wParam, LPARAM lParam) {
   }
 }
 
-int main(int argc, char* argv[], HINSTANCE hInstance) {
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nShowCmd) {
   if (SteamAPI_RestartAppIfNecessary(348550)) {
     return -1;
   }
@@ -142,17 +142,16 @@ int main(int argc, char* argv[], HINSTANCE hInstance) {
   WNDCLASS.lpfnWndProc = WndProc;
   WNDCLASS.lpszClassName = L"GUILTY GEAR XX ΛCORE PLUS R";
   WNDCLASS.hIcon = LoadIconW(hInstance, 107);
-  WNDCLASS.style = 0x1003; // CS_BYTEALIGNCLIENT, CS_HREDRAW, CS_VREDRAW
-  ATOM AVar = RegisterClassW(&WNDCLASS);
+  WNDCLASS.style = CS_BYTEALIGNCLIENT | CS_HREDRAW | CS_VREDRAW;
 
-  if ((AVar != 0) && (hwnd = CreateWindowExW(0,L"GUILTY GEAR XX ΛCORE PLUS R",L"GUILTY GEAR XX ΛCORE PLUS R",dwStyle,CW_USEDEFAULT,CW_USEDEFAULT,WindowW,WindowH,NULL,NULL,hInstance,NULL), hwnd != NULL)) {
+  if ((RegisterClassW(&WNDCLASS)) && (CreateWindowExW(0,L"GUILTY GEAR XX ΛCORE PLUS R",L"GUILTY GEAR XX ΛCORE PLUS R",dwStyle,CW_USEDEFAULT,CW_USEDEFAULT,WindowW,WindowH,NULL,NULL,hInstance,NULL))) {
     if (WindowMode == 1) { // Fullscreen
       ShowCursor(true);
     }
     ShowWindow(hwnd,SW_SHOW);
     UpdateWindow(hwnd);
     if (WindowMode == 0) { // Windowed
-      SetWindowLongW(hwnd,GWL_STYLE,0x10ca0000); // WS_VISIBLE, WS_CAPTION, WS_MINIMIZEBOX, WS_SYSMENU
+      SetWindowLongW(hwnd,GWL_STYLE,WS_VISIBLE | WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU);
       int x = (WindowResolutionHeight[FullScreen & 1] / 2) - (WindowResolutionWidht[FullScreen & 1] / 2);
       int y = (GetSystemMetrics(SM_CYSCREEN) / 2) - (GetSystemMetrics(SM_CXSCREEN) / 2);
       SetWindowPos(hwnd,HWND_NOTOPMOST,x,y,WindowW,WindowH,SWP_DRAWFRAME);
