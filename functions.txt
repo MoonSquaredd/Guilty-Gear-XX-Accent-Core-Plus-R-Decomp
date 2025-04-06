@@ -1,0 +1,33 @@
+! offsets as in memory. for absolute image base offsets subtract 0x400000 from them, for absolute file offsets subtract 0x402400 !
+
+0x005034c0 - ThreadWork
+0x00504580 - debugf
+0x0050a4d0 - GameInit
+0x0050abf0 - Movie_Execute
+0x0052a0b0 - Screen_Init
+0x005377a0 - PlayerInit
+0x005441c0 - VGASelect
+0x0054f540 - DebugMenu
+0x005811c0 - TitleMain
+0x0058e100 - TeamVsMain
+0x005bc990 - Init_Game_Info
+0x005bd880 - JobMain
+0x005bf530 - GetObjFileSeNum
+0x005bfbe0 - ObjFileLink
+0x005c2d00 - GameMain
+0x005ecde0 - CockpitInit
+0x0060b700 - SelectMain
+0x00619cb0 - BG_Init
+0x00621c70 - WinMain
+0x006c4560 - AutoSave
+0x006c46d0 - AutoLoad
+0x006c4fb0 - sv_set_enemy_status
+0x006c5170 - sv_save_enemystatus
+0x006d6d30 - StoryInit
+0x006dd690 - StgSelMain
+0x006df2a0 - SoundModeExecute
+0x006eace0 - Framerate_Test
+0x006f5c40 - ReplaySelect
+0x00717140 - MissionWin
+0x00717340 - MissionMain
+0x00758a50 - GalleryMain
