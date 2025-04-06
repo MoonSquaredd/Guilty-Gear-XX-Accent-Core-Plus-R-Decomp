@@ -1,0 +1,97 @@
+! offsets as in memory. for absolute image base offsets subtract 0x400000 from them, for absolute file offsets subtract 0x402400 !
+! ?? values means uninitialized data !
+
+.rdata [0x007bd000]
+
+0x008760ec - VS | Type: string | Value: "VS  "
+0x0087789c - WIN | Type: string | Value: "WIN"
+0x00877d7c - GINI | Type: string | Value: "GINI"
+0x00877e44 - MATC | Type: string | Value: "MATC"
+0x00907720 - RPSL | Type: string | Value: "RPSL"
+0x009078fc - VGASL | Type: string | Value: "VGASL"
+0x00907904 - ATSV | Type: string | Value: "ATSV"
+0x0090790c - ATLD | Type: string | Value: "ATLD"
+0x00907914 - TEAMVS | Type: string | Value: "TEAMVS  "
+0x00907920 - ENBT | Type: string | Value: "ENBT"
+0x009094e4 - CHRSLCT | Type: string | Value: "CHRSLCT"
+0x0090a154 - FRAMERATE_TEST | Type: string | Value: "FRAMERATE_TEST"
+0x0090bd08 - STSE | Type: string | Value: "STSE"
+0x0090ec80 - GLMAIN | Type: string | Value: "GLMAIN"
+0x0091f3b0 - TITL | Type: string | Value: "TITL"
+0x0091f3b8 - PR | Type: string | Value: "PR  "
+0x0091f3c0 - EDIN | Type: string | Value: "EDIN"
+0x0091f3c8 - SMENU | Type: string | Value: "SMENU"
+0x0091f3d0 - OPTION | Type: string | Value: "OPTION"
+0x0091f3ec - DBM | Type: string | Value: "DBM "
+0x0091f3f4 - INEXBT | Type: string | Value: "INEXBT"
+0x0091f3fc - DBSND | Type: string | Value: "DBSND"
+0x0091f404 - DBMS | Type: string | Value: "DBMS"
+0x0091f40c - STINIT | Type: string | Value: "STINIT"
+0x0091f414 - SREXEC | Type: string | Value: "SREXEC"
+0x0091f41c - CREXEC | Type: string | Value: "CREXEC"
+0x0091f424 - MVEXEC | Type: string | Value: "MVEXEC"
+0x0091f42c - MSWIN | Type: string | Value: "MSWIN"
+0x0091f434 - SVRST | Type: string | Value: "SVRST"
+0x0091f43c - SVLVST | Type: string | Value: "SVLVST"
+0x0091f444 - SMEXEC | Type: string | Value: "SMEXEC"
+0x009372a0 - FIN | Type: string | Value: "FIN "
+0x009379a0 - ENEXBT | Type: string | Value: "ENEXBT"
+
+.data [0x00963000]
+
+0x00974b20 - FileNames | Type: string*[2623]
+- 0x00974b20 - jpfont2020 | Value: 0x0092de18("demo/jpfont2020.bin")
+- 0x00974b24 - jpfont2222 | Value: 0x0092de04("demo/jpfont2222.bin")
+//wip
+
+0x00aa6f60 - sv_info | Type: struct SURVIVAL_INFOMATION (size: 168, alignment: 1)
+- 0x00aa6f60 - ply | Type: int | Value: ??
+- 0x00aa6f64 - win | Type: int | Value: ??
+- 0x00aa6f68 - hitpoint | Type: short | Value: ??
+- 0x00aa8f6a - time_cnt | Type: char | Value: ??
+- 0x00aa8f6b - hoimi | Type: char | Value: ??
+- 0x00aa8f6c - enetb | Type: short[26]
+//wip
+
+0x00acbd1c - BattleStatus | Type: int | Value: ??
+
+0x00acc598 - afimgwork | Type: struct AFTERIMAGE_WORK[2][16] (size: 36, alignment: 1)
+- 0x00acc598 - p1
+-- 0x00acc598 - posx | Type: int | Value: ??
+-- 0x00acc59c - posy | Type: int | Value: ??
+-- 0x00acc5a0 - corex | Type: short | Value: ??
+-- 0x00acc5a2 - corey | Type: short | Value: ??
+//wip
+
+0x00ad0bf8 - KoreanSE | Type: short | Value: ??
+0x00ad1114 - SpriteId | Type: short | Value: ??
+0x00ad1cfc - SpriteIdBg | Type: short | Value: ??
+
+0x00ad63a0 - g_info | Type: struct GAME_INFOMATION (size: 252, alignment: 1)
+- 0x00ad63a0 - CPURoundMax | Type: short | Value: ??
+- 0x00ad63a2 - Damage | Type: short | Value: ??
+- 0x00ad63a4 - TimeByCount | Type: short | Value: ??
+- 0x00ad63a6 - Difficulty | Type: short | Value: ??
+//wip
+
+0x00ad6500 - GG-MODE | Type: short[2]
+- 0x00ad6500 - p1 | Value: ??
+- 0x00ad6502 - p2 | Value: ??
+
+0x00ad64a8 - TotalCounter | Type: uint | Value: ??
+
+0x00ad660c - UseCharacter1p2p | Type: short[2]
+- 0x00ad660c - p1 | Value: ??
+- 0x00ad660e - p2 | Value: ??
+
+0x00adb05c - fadeval | Type: float | Value: ??
+0x00adb060 - FadeOutStatus | Type: int | Value: ??
+0x00adb064 - FadeSpeed | Type: float | Value: ??
+0x00adb068 - FadeCommand | Type: int | Value: ??
+0x00adb06c - FadeCockpitFlag | Type: uint | Value: ??
+0x00b106cc - GlobalHitStop | Type: int | Value: ??
+0x00b109e0 - DebugFlag | Type: int | Value: ??
+0x00b109e4 - Pause | Type: int | Value: ??
+0x00b109ec - JobMode | Type: int | Value: ??
+0x00b10b1c - P1_BUF_ADDR | Type: char* | Value: ??
+0x00b10b20 - P2_BUF_ADDR | Type: char* | Value: ??
