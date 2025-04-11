@@ -17,6 +17,7 @@
 0x0053c6a0 - SetCellTopAndGclTop
 0x00540ad0 - Random
 0x00540cbo - EffectCreate
+0x005416a0 - void __stdcall ArchiveInit(void)
 0x005441c0 - VGASelect
 0x0054f540 - DebugMenu
 0x005811c0 - TitleMain
@@ -28,6 +29,8 @@
 0x005bfbe0 - ObjFileLink
 0x005c2d00 - GameMain
 0x005d2fb0 - EnterBattle
+0x005d4de0 - void __stdcall AfterBattle(void) // Post Last Round Version? Mostly Duplicate
+0x005d66b0 - void __stdcall AfterBattle(void)
 0x005d7230 - EnterExBattle
 0x005ecde0 - CockpitInit
 0x0060b700 - SelectMain
@@ -37,12 +40,85 @@
 0x006199d0 - BG_LoadTexture
 0x00619cb0 - BG_Init
 0x00621c70 - WinMain
+0x006a31a0 - void __cdecl AXChainKill_Proc(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x006a5300 - void __cdecl AX_RespectCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x006a5370 - void __cdecl AX_ExciteCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x006a62d0 - int __cdecl AX_SpecialAttackCheck(CHARACTER_WORK *offset) - Ret: EAX, offset: Stack[0x4]
+0x006a8cb0 - void __cdecl AN_ExciteCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x006ad3a0 - SetActNo
+0x006aea00 - void __cdecl af_SETLOCALID(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aea80 - void __cdecl af_FAINT(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeaa0 - void __cdecl af_NOTHROW(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aead0 - void __cdecl af_MUTEKI(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeaf0 - void __cdecl af_DAMAGEHOSEI(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeb20 - void __cdecl af_KEZURI(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeb40 - void __cdecl af_GROUNDSHAKE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeb70 - void __cdecl af_FLASH(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeba0 - void __cdecl af_ENEMY_GUARD_SE_MODE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aebe0 - void __cdecl af_ENEMY_HIT_SET_MODE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aec20 - void __cdecl af_FREEIMAGE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aec40 - void __cdecl af_PALETTE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aec80 - void __cdecl af_INDEPENDENCE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aecd0 - void __cdecl af_SETMAXHIT(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aecf0 - void __cdecl af_POSBYENEMY(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aed10 - void __cdecl af_REVIVEDAMAGE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aed20 - void __cdecl af_DO_NOT_CHECK_DAMAGE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aed30 - void __cdecl af_DO_NOT_CHECK_ATTACK(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aed40 - void __cdecl af_DELETE_ITTAI(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aed90 - void __cdecl af_SET_DOWNTIME(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aedc0 - void __cdecl af_DOWN_Y(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aedf0 - void __cdecl af_DOWN_X(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aee20 - void __cdecl af_DOWN_GRAV(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aee50 - void __cdecl af_PARENT_OFFSET_POS_Y(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aee80 - void __cdecl af_PARENT_OFFSET_POS_X(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeed0 - void __cdecl af_DRAW_REVERSE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeee0 - void __cdecl af_DRAW_NORMAL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeef0 - void __cdecl af_SETGRAVITY(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aef10 - void __cdecl af_RENDACHANSEL(CHARACTER_WORK *offset, TACTNORMALQUAD *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aef40 - void __cdecl af_SETMASK(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aef70 - void __cdecl af_SETMARK(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aefb0 - void __cdecl af_SET_ACTTYPE(CHARACTER_WORK *offset, TSET_ACTTYPE *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006aeff0 - void __cdecl af_SET_LEVEL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af010 - void __cdecl af_AFTERIMAGE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af0e0 - void __cdecl af_SIT(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af110 - void __cdecl af_SETDOWNFLAG(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af260 - void __cdecl af_VEBALL(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af2a0 - void __cdecl af_DAMAGE_VOICE(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af2d0 - void __cdecl af_GUARD_VOICE(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af300 - void __cdecl af_SEMITRANS(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af340 - void __cdecl af_SET_PRIORITY(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af580 - void __cdecl af_RENEWAL_COLLISION(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af5c0 - void __cdecl af_BACK_MOTION(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006af650 - void __cdecl af_ASTFLAGCONTROL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006afb10 - void __cdecl af_JUMPCONTROL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006afb90 - void __cdecl af_COMMUNICATE(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006afbf0 - void __cdecl af_SETCOLLISIONDATA(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
 0x006afc80 - SetAnimeNo
+0x006b0570 - void __cdecl af_RANDPOS(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0590 - void __cdecl af_REVERSE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b05c0 - void __cdecl af_JUMPCANCEL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0680 - void __cdecl af_SET_DAMAGE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b06a0 - void __cdecl af_SETYSPEED(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0760 - void __cdecl af_SETXSPEED(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0bd0 - void __cdecl af_CHAIN_CANCEL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0d60 - void __cdecl af_DELETECHARACTER(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0ee0 - void __cdecl af_ROT(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b0fc0 - void __cdecl af_SCALE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
 0x006b10b0 - ParentFlagSet
+0x006b1330 - void __cdecl af_TENSION(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b1a90 - void __cdecl af_FADE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
 0x006b1c20 - ExeAnime
-0x006c4560 - AutoSave
-0x006c46d0 - AutoLoad
+0x006b21a0 - void __cdecl af_KAKUSEI(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b23b0 - void __cdecl af_ENEMYDAMAGE(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b2640 - void __cdecl af_RQ_SOUND(CHARACTER_WORK *offset, TACT3B *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b2780 - void __cdecl af_FIXEDEFFECT(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b2c30 - void __cdecl af_VISUAL(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b2dd0 - void __cdecl af_GUARD(CHARACTER_WORK *offset, TACTNORMAL *ip) - offset: Stack[0x4], ip: Stack[0x8]
+0x006b6220 - void __cdecl AB_ExciteCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x006b8990 - int __cdecl AB_NoCancelAttackCheck(CHARACTER_WORK *offset) - Ret: EAX, offset: Stack[0x4]
+0x006b8e40 - int __cdecl AB_SpecialAttackCheck(CHARACTER_WORK *offset) - Ret: EAX, offset: Stack[0x4]
+0x006c4560 - void __stdcall AutoSave(void)
+0x006c46d0 - void __stdcall AutoLoad(void)
 0x006c4fb0 - sv_set_enemy_status
 0x006c5170 - sv_save_enemystatus
 0x006d6d30 - StoryInit
