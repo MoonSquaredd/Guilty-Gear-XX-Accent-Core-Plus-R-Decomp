@@ -7,11 +7,12 @@
 0x0050abf0 - Movie_Execute
 0x00511bb0 - CellMain
 0x00514380 - FadeIn
+0x0051ec40 - void __cdecl BGM_Request(int idno,int loop) - idno: EAX, loop: Stack[0x4]
 0x0052a0b0 - Screen_Init
 0x0052a2b0 - ScreenExecute
 0x005377a0 - PlayerInit
 0x0053a560 - set_PlayDat
-0x0053abd0 - BgWork_Initial
+0x0053abd0 - BG_WORK * __cdecl BgWork_Initial(short idno,BGINIT_ARG *arg) - Ret: EAX, idno: Stack[0x4], arg: ECX
 0x0053bb70 - GetInstTbAddr
 0x0053c640 - SetPalTop
 0x0053c6a0 - SetCellTopAndGclTop
@@ -28,18 +29,25 @@
 0x006bf9a0 - ObjLinkSub
 0x005bfbe0 - ObjFileLink
 0x005c2d00 - GameMain
+0x005d1360 - void __stdcall BeforeBattle(void)
 0x005d2fb0 - EnterBattle
 0x005d4de0 - void __stdcall AfterBattle(void) // Post Last Round Version? Mostly Duplicate
 0x005d66b0 - void __stdcall AfterBattle(void)
 0x005d7230 - EnterExBattle
+0x005eaf10 - void __cdecl BattleHudTop_Draw(int x,int y,int z,int zm_x,int zm_y,int attr,float alpha,int sprno) 
+x: Stack[0x4], y: Stack[0x8], z: Stack[0xc], zm_x: Stack[0x10], zm_y: Stack[0x14], attr: Stack[0x18], alpha: Stack[0x1c], sprno: EAX
 0x005ecde0 - CockpitInit
 0x0060b700 - SelectMain
 0x00617d90 - Gray_Exe
-0x00618580 - BG_LoadTextureInit
-0x006192e0 - BG_LoadTextureExecute
-0x006199d0 - BG_LoadTexture
-0x00619cb0 - BG_Init
+0x00618580 - void __stdcall BG_LoadTextureInit(void)
+0x006192e0 - void __stdcall BG_LoadTextureExecute(void)
+0x006199d0 - void __stdcall BG_LoadTexture(void)
+0x00619cb0 - void __stdcall BG_Init(void)
+0x0061c330 - void __stdcall BGObjCreate(void)
+0x0061dfa0 - void __stdcall BG_Execute(void)
 0x00621c70 - WinMain
+0x0069f130 - void __cdecl BK_ExciteCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x006a11d0 - int __cdecl BK_SpecialAttackCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x006a31a0 - void __cdecl AXChainKill_Proc(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x006a5300 - void __cdecl AX_RespectCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x006a5370 - void __cdecl AX_ExciteCommnadCheck(CHARACTER_WORK *offset) - offset: Stack[0x4]
