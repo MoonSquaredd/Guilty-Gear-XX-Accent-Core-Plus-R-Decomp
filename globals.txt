@@ -3,6 +3,13 @@
 
 .rdata [0x007bd000]
 
+0x007d2350 - BGMEntryList | Type: struct BGM_Entry[45]
+- 0x007d2350 - Opening | Type: struct BGM_Entry (size: 12, alignment: 1)
+-- 0x007d2350 - id | Type: int | Value: 18
+-- 0x007d2354 - Name | Type: char** | Value: 0x0090b4cc("LAUNCH OUT")
+-- 0x007d2358 - Usage | Type: char** | Value: 0x0090b4c0("- OPENING -")
+//wip
+
 0x008760ec - VS | Type: string | Value: "VS  "
 0x0087789c - WIN | Type: string | Value: "WIN"
 0x00877d7c - GINI | Type: string | Value: "GINI"
@@ -39,6 +46,7 @@
 
 .data [0x00963000]
 
+0x0096ef4c - BootControl | Type: uint | Value: 0x10000000
 0x00974b20 - FileNames | Type: string*[2623]
 - 0x00974b20 - jpfont2020 | Value: 0x0092de18("demo/jpfont2020.bin")
 - 0x00974b24 - jpfont2222 | Value: 0x0092de04("demo/jpfont2222.bin")
@@ -71,14 +79,57 @@
 - 0x00982962 - Order-Sol | Value: 43
 - 0x00982963 - Kliff | Value: 33
 - 0x00982964 - Justice | Value: 34
-
+0x00982ec3 - BGMListByIdno | Type: char[26] // bgm to use for each character when in +R mode
+- 0x00982ec3 - None | Value: 0
+- 0x00982ec4 - Sol | Value: 21
+- 0x00982ec5 - Ky | Value: 14
+- 0x00982ec6 - May | Value: 16
+- 0x00982ec7 - Millia | Value: 17
+- 0x00982ec8 - Axl | Value: 2
+- 0x00982ec9 - Potemkin | Value: 19
+- 0x00982eca - Chipp | Value: 6
+- 0x00982ecb - Eddie | Value: 28
+- 0x00982ecc - Baiken | Value: 3
+- 0x00982ecd - Faust | Value: 9
+- 0x00982ece - Testament | Value: 23
+- 0x00982ecf - Jam | Value: 12
+- 0x00982ed0 - Anji | Value: 0
+- 0x00982ed1 - Johnny | Value: 13
+- 0x00982ed2 - Venom | Value: 24
+- 0x00982ed3 - Dizzy | Value: 8
+- 0x00982ed4 - Slayer | Value: 20
+- 0x00982ed5 - I-No | Value: 11
+- 0x00982ed6 - Zappa | Value: 27
+- 0x00982ed7 - Bridget | Value: 26
+- 0x00982ed8 - Robo-Ky | Value: 32
+- 0x00982ed9 - A.B.A | Value: 42
+- 0x00982eda - Order-Sol | Value: 43
+- 0x00982edb - Kliff | Value: 33
+- 0x00982edc - Justice | Value: 34
 0x00983e30 - AttackGaugeX | Type: int[2]
 - 0x00983e30 - P1 | Value: -20
 - 0x00983e34 - P2 | Value: 20
-
+0x00983e38 - BurstGaugeX | Type: int[2]
+- 0x00983e38 - P1 | Value: -50
+- 0x00983e3c - P2 | Value: 35
 0x00984260 - AttackGaugeY | Type: int[2]
 - 0x00984260 - P1 | Value: 0
 - 0x00984264 - P2 | Value: 0
+0x00984268 - BurstGaugeX | Type: int[2]
+- 0x00984268 - P1 | Value: -9
+- 0x0098426c - P2 | Value: -8
+0x009ed838 - BGLoad_Work | Type: struct BG_LOADTXTCTRL (size: 32, alignment: 1)
+- 0x009ed838 - IsVQ | Type: char* | Value: 0x0
+- 0x009ed83c - HeightOffset | Type: int* | Value: 0x0
+- 0x009ed840 - Size | Type: int* | Value: 0x0
+- 0x009ed844 - paltop | Type: int | Value: 0
+- 0x009ed848 - spriteidtop | Type: int | Value: -1
+- 0x009ed84c - num | Type: int | Value: 0
+- 0x009ed850 - addr | Type: uint* | Value: 0x0
+- 0x009ed854 - orgaddr | Type: int* | Value: 0x0
+0x009f7100 - BKAct_jumpTb | Type: void(*function)(CHARACTER_WORK*)[???]
+- 0x009f7100 - Stand | Value: 0x005f1e40(void __cdecl CmnAct_Stand(CHARACTER_WORK *offset))
+//wip
 
 0x009f7680 - AXAct_jumpTb | Type: void(*function)(CHARACTER_WORK*)[???]
 - 0x009f7680 - Stand | Value: 0x005f1e40(void __cdecl CmnAct_Stand(CHARACTER_WORK *offset))
@@ -98,10 +149,19 @@
 - 0x009f8840 - Stand | Value: 0x005f1e40(void __cdecl CmnAct_Stand(CHARACTER_WORK *offset))
 //wip
 
+0x009f9070 - bosschk | Type: struct SURVIVAL_BOSSENTRY[25]
+- 0x009f9070 - Boss 1 | Type: struct SURVIVAL_BOSSENTRY (size: 20, alignment: 1)
+-- 0x009f9070 - idno | Type: int | Value: 13 // Anji
+-- 0x009f9074 - LevelReq | Type: int | Value: 20
+-- 0x009f9078 - CPU_Lv | Type: int | Value: 12
+-- 0x009f907c - isEx | Type: int | Value: 1 // Yes
+-- 0x009f9080 - Palette | Type: int | Value: 2 // Shadow
+//wip
+
 0x009f9534 - Attack_LV_MAX | Type: int | Value: 14 // maximum level of attack in survival mode
+0x009f9548 - Burst_LV_MAX | Type: int | Value: 4 // maximum level of burst in survival mode
 0x009f954c - A.Dash_LV_MAX | Type: int | Value: 2 // maximum level of air-dashes in survival mode
 0x009f9550 - A.Jump_LV_MAX | Type: int | Value: 2 // maximum level of air-jumps in survival mode
-
 0x00a56ed8 - AC_Mission01 | Type: struct MISSION_INFO (size: 128, alignment: 1)
 - 0x00a56ed8 - Character | Type: short[2]
 -- 0x00a56ed8 - Player | Value: 0 // None
@@ -136,15 +196,14 @@
 - 0x00a57dd8 - Mission 1 | Value: 0x00a56ed8(AC_Mission01)
 //wip
 
+0x00a8a410 - BonusTxtTime | Type: int | Value: -1
 0x00a8b784 - AB_ITIGEKICommand | Type: int(*function)(CHARACTER_WORK*)[2]
 - 0x00a8b784 - IsHadoux2 | Value: 0x0053fe80(int __cdecl IsHadoux2(CHARACTER_WORK *offset))
 - 0x00a8b788 - IsTrgAndOffHeavySlash | Value: 0x0053ce10(int __cdecl IsTrgAndOffHeavySlash(CHARACTER_WORK *offset))
-
 0x00a8d9c0 - aftimgcol | Type: uint[3]
 - 0x00a8d9c0 - 0 | Value: 0xFFFFFFFF
 - 0x00a8d9c4 - 1 | Value: 0xFFFFFFFF
 - 0x00a8d9c8 - 2 | Value: 0xFFFFFFFF
-
 0x00aa6f60 - sv_info | Type: struct SURVIVAL_INFOMATION (size: 168, alignment: 1)
 - 0x00aa6f60 - ply | Type: int | Value: ??
 - 0x00aa6f64 - win | Type: int | Value: ??
@@ -156,9 +215,16 @@
 
 0x00abefa8 - actnoSv | Type: int | Value: ??
 0x00abefdc - axkillchainid | Type: int | Value: ??
+0x00abfc4c - BGMLoop | Type: int | Value: ??
+0x00ac14e8 - bitmapH | Type: int | Value: ??
+0x00ac1504 - bitmapW | Type: int | Value: ??
+0x00ac2ea0 - bgex | Type: struct BGEX (size: 44, alignment: 1)
+- 0x00ac2ea0 - ischase | Type: int | Value: ??
+//wip
+
+0x00ac59c0 - bgset_datap | Type: char* | Value: ??
 0x00acbd1c - BattleStatus | Type: int | Value: ??
 0x00acbd2c - AfterBattleCounter | Type: int | Value: ??
-
 0x00acc598 - afimg_work | Type: struct AFTERIMAGE_WORK[2][16] (size: 36, alignment: 1)
 - 0x00acc598 - p1
 -- 0x00acc598 - posx | Type: int | Value: ??
@@ -167,12 +233,34 @@
 -- 0x00acc5a2 - corey | Type: short | Value: ??
 //wip
 
+0x00acdea0 - basealfa | Type: int | Value: ??
+0x00ace22c - BGMVolume | Type: short[2]
+- 0x00ace22c - 0 | Value: ??
+- 0x00ace22e - 1 | Value: ??
 0x00ad0bf8 - KoreanSE | Type: short | Value: ??
 0x00ad1114 - SpriteId | Type: short | Value: ??
 0x00ad1cfc - SpriteIdBg | Type: short | Value: ??
+0x00ad28d8 - BgWork | Type: struct BG_WORK* | Value: ??
+0x00ad4b8c - BackWalk_XSpeedByIdno | Type: short[2]
+- 0x00ad4b8c - P1 | Value: ??
+- 0x00ad4b8e - P2 | Value: ??
+0x00ad4ba4 - BackJump_XSpeedByIdno | Type: short[2]
+- 0x00ad4ba4 - P1 | Value: ??
+- 0x00ad4ba6 - P2 | Value: ??
+0x00ad4bbc - BackHighJump_XSpeedByIdno | Type: short[2]
+- 0x00ad4bbc - P1 | Value: ??
+- 0x00ad4bbe - P2 | Value: ??
+0x00ad4b94 - BackStep_XSpeedByIdno | Type: short[2]
+- 0x00ad4b94 - P1 | Value: ??
+- 0x00ad4b96 - P2 | Value: ??
+0x00ad4b98 - BackStep_YSpeedByIdno | Type: short[2]
+- 0x00ad4b98 - P1 | Value: ??
+- 0x00ad4b9a - P2 | Value: ??
+0x00ad4b9c - BackStep_GravityByIdno | Type: short[2]
+- 0x00ad4b9c - P1 | Value: ??
+- 0x00ad4b9e - P2 | Value: ??
 0x00ad5cd4 - avrx | Type: float | Value: ??
 0x00ad5cd8 - avry | Type: float | Value: ??
-
 0x00ad63a0 - g_info | Type: struct GAME_INFOMATION (size: 252, alignment: 1)
 - 0x00ad63a0 - CPURoundMax | Type: short | Value: ??
 - 0x00ad63a2 - Damage | Type: short | Value: ??
@@ -183,13 +271,10 @@
 0x00ad6500 - GG-MODE | Type: short[2]
 - 0x00ad6500 - p1 | Value: ??
 - 0x00ad6502 - p2 | Value: ??
-
 0x00ad64a8 - TotalCounter | Type: uint | Value: ??
-
 0x00ad660c - UseCharacter1p2p | Type: short[2]
 - 0x00ad660c - p1 | Value: ??
 - 0x00ad660e - p2 | Value: ??
-
 0x00adb05c - fadeval | Type: float | Value: ??
 0x00adb060 - FadeOutStatus | Type: int | Value: ??
 0x00adb064 - FadeSpeed | Type: float | Value: ??
@@ -200,11 +285,11 @@
 0x00b109e0 - DebugFlag | Type: int | Value: ??
 0x00b109e4 - Pause | Type: int | Value: ??
 0x00b109ec - JobMode | Type: int | Value: ??
-0x00b10b1c - P1_BUF_ADDR | Type: char* | Value: ?? // points to the loaded p1 character file
-0x00b10b20 - P2_BUF_ADDR | Type: char* | Value: ?? // points to the loaded p2 character file
+0x00b10b1c - P1_BUF_ADDR | Type: char* | Value: ?? // points to the loaded p1 character file in memory
+0x00b10b20 - P2_BUF_ADDR | Type: char* | Value: ?? // points to the loaded p2 character file in memory
+0x00b10b24 - BGFile | Type: char* | Value: ?? // points to the loaded stage file in memory
 0x00b10b84 - ArchiveFile | Type: char* | Value: ?? // points to archive_jpf loaded in memory
 0x00b12020 - AspectRatioFixed | Type: int | Value: ??
-
 0x00b22300 - AttackGaugeYOffset | Type: int[2]
 - 0x00b22300 - P1 | Value: ??
 - 0x00b22304 - P2 | Value: ??
