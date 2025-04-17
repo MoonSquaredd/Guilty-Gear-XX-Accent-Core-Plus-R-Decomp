@@ -8,7 +8,11 @@
 0x00511bb0 - void __stdcall CellMain(CHARACTER_WORK *offset) - offset: ESI
 0x00514380 - FadeIn
 0x0051ec40 - void __cdecl BGM_Request(int idno,int loop) - idno: EAX, loop: Stack[0x4]
+0x00521c70 - void __cdecl CmnAct_Casket(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x00521d50 - void __cdecl CmnAct_AXTenhousekiDMG(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x005226c0 - void __cdecl CmnAct_DiebyFA(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x00523f50 - void __cdecl CmnAct_DiebyJY(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x00524710 - void __cdecl CmnAct_CutbyJY(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x0052a0b0 - Screen_Init
 0x0052a2b0 - ScreenExecute
 0x005377a0 - PlayerInit
@@ -39,12 +43,17 @@
 0x005d1360 - void __stdcall BeforeBattle(void)
 0x005d2fb0 - EnterBattle
 0x005d4de0 - void __stdcall AfterBattle(void) // Post Last Round Version? Mostly Duplicate
-0x005d66b0 - void __stdcall AfterBattle(void)
+0x005d56b0 - void __stdcall AfterBattle(void)
 0x005d7230 - EnterExBattle
 0x005eaf10 - void __cdecl BattleHudTop_Draw(int x,int y,int z,int zm_x,int zm_y,int attr,float alpha,int sprno) 
 x: Stack[0x4], y: Stack[0x8], z: Stack[0xc], zm_x: Stack[0x10], zm_y: Stack[0x14], attr: Stack[0x18], alpha: Stack[0x1c], sprno: EAX
 0x005ecde0 - CockpitInit
+0x005f0d30 - void __cdecl CmnAct_Block(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x005f1ad0 - void __cdecl CmnAct_BackWalk(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x005f3900 - void __cdecl CmnAct_AirSlashBack(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x005f4c80 - void __cdecl CmnAct_Burst(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x005f5090 - void __cdecl CmnAct_Dash(CHARACTER_WORK *offset) - offset: Stack[0x4]
+0x005f5ae0 - void __cdecl CmnAct_BackStep(CHARACTER_WORK *offset) - offset: Stack[0x4]
 0x005fa1e0 - void __stdcall CharSelLogo(void)
 0x005fe4e0 - void __stdcall CharSelP2Plate(void)
 0x005fe4f0 - void __stdcall CharSelP1Plate(void)
